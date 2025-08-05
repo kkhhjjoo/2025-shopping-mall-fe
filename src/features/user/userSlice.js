@@ -3,6 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { showToastMessage } from '../common/uiSlice';
 import api from '../../utils/api';
 import { initialCart } from '../cart/cartSlice';
+import Login from '../../page/LoginPage/LoginPage';
 
 export const loginWithEmail = createAsyncThunk(
   'user/loginWithEmail',
@@ -10,9 +11,9 @@ export const loginWithEmail = createAsyncThunk(
     try {
       const response = await api.post('/auth/login', { email, password });
       //성공
-      if (response.data.token) {
-        localStorage.setItem('token', response.data.token);
-      }
+      //토큰 저장
+      //1. local Storage 2.session Storage
+      sessionStorage.setItem('token', response.data.token);
       return response.data;
     } catch (error) {
       //실패
@@ -65,7 +66,14 @@ export const registerUser = createAsyncThunk(
 
 export const loginWithToken = createAsyncThunk(
   'user/loginWithToken',
-  async (_, { rejectWithValue }) => {}
+  async (_, { rejectWithValue }) => {
+    try{
+      const response = await api.get('/user/me');
+      return response.data
+    }catch(error) {
+      return rejectWithValue(error.error)
+    }
+  }
 );
 
 const userSlice = createSlice({
@@ -105,6 +113,9 @@ const userSlice = createSlice({
       })
       .addCase(loginWithEmail.rejected, (state, action) => {
         state.loginError = action.payload;
+      })
+      .addCase(loginWithToken.fulfilled, (state, action) => {
+        state.user = action.payload.user;
       });
   },
 });
