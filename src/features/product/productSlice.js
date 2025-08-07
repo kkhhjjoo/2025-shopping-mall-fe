@@ -40,6 +40,7 @@ export const createProduct = createAsyncThunk(
       
       if (response.status !== 200) throw new Error(response.error);
       dispatch(showToastMessage({ message: "상품 생성 완료", status: "success" }));
+      dispatch(getProductList({page: 1}))
       return response.data.data;
     } catch (error) {
       return rejectWithValue(error.message || error.error || "상품 생성에 실패했습니다.");
@@ -54,6 +55,7 @@ export const deleteProduct = createAsyncThunk(
       const response = await api.delete(`/product/${id}`);
       
       if (response.status !== 200) throw new Error(response.error);
+      dispatch(getProductList({page: 1}))
       dispatch(showToastMessage({ message: "상품 삭제 완료", status: "success" }));
       return id; // 삭제된 상품 ID 반환
     } catch (error) {
