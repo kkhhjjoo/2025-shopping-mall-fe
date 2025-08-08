@@ -47,5 +47,5 @@
 * Express
 * MongoDB
 ### Devops
-* AWS beanstalk 
+* Heroku
 * Netlify 
