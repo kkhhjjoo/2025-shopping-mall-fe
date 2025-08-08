@@ -4,8 +4,8 @@
 
 <img width="1498" alt="Screenshot 2023-08-09 at 10 59 52" src="https://github.com/legobitna/noona-shoppingmall-fe/assets/21190318/534ec667-da75-4939-a124-49c9315ef13d">
 
-* 데모🖥:https://noona-shoppingmall.netlify.app/
-## 프로젝트의 목표
+* 데모🖥: https://hj-shoppingmall.netlify.app/
+* ## 프로젝트의 목표
 한 달🗓 이라는 기간 안에 프론트엔드에서 백엔드까지 풀스택으로 개발할 수 있는 쇼핑몰 웹사이트! 
 ## User Story 📖
 ### 유저
