@@ -5,12 +5,13 @@ const LOCAL_BACKEND = process.env.REACT_APP_LOCAL_BACKEND;
 // const BACKEND_PROXY = process.env.REACT_APP_BACKEND_PROXY;
 // console.log("proxy", BACKEND_PROXY);
 const api = axios.create({
-  baseURL: LOCAL_BACKEND,
+  baseURL: `${LOCAL_BACKEND}/api`, // /api 경로 추가
   headers: {
     "Content-Type": "application/json",
     authorization: `Bearer ${sessionStorage.getItem("token")}`,
   },
 });
+
 /**
  * console.log all requests and responses
  */
